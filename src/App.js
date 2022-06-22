@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom'
 import './App.css';
+// import LoginSignup from './components/LoginSignup';
+import ComOne from './components/ComOne';
+import Doctors from './components/Doctors';
+import Patients from './components/Patients';
+import Appointments from './components/Appointments';
+import ChangeUser from './components/ChangeUser';
+import NewUser from './components/NewUser';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <LoginSignup /> */}
+      <Routes>
+        <Route path='/' element={<ChangeUser />} />
+        {/* <Route path='/loginsignup' element={<LoginSignup />} /> */}
+        <Route path='/comone' element={<ComOne />} />
+        <Route path='/doctors' element={<Doctors />} />
+        <Route path='/patients' element={<Patients />} />
+        <Route path='/appointments' element={<Appointments />} />
+        <Route path='/changeuser' element={<ChangeUser />} />
+        <Route path='/newuser' element={<NewUser />} />
+      </Routes>
     </div>
   );
 }

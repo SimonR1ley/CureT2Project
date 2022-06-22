@@ -1,0 +1,227 @@
+.left-div {
+    float: left;
+    width: 45%;
+    height: 90vh;
+    /* background-color: #242731; */
+    margin-left: 20%;
+    padding-top: 4%;
+}
+
+.doctor-heading {
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+
+}
+
+.currentDoctors-heading {
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    padding-top: 50px;
+}
+
+
+
+
+.entry-con-doc{
+    width: 95%;
+    height: 50px;
+    background-color: #242731;
+    border-radius: 10px;
+}
+
+.d-heading{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    padding-top: 10px;
+    font-size: 13pt;
+}
+
+.Heading-con{
+    float: left;
+    width: 20%;
+    height: 100%;
+    /* background-color: #3F8CFF; */
+    margin-right: 15px;
+}
+
+.first{
+ margin-left: 10px;
+ width: 6%;
+}
+
+.d-entry{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    padding-top: 15px;
+    font-size: 10pt;
+}
+
+.d-display{
+    height: 350px;
+    margin-top: 20px;
+}
+
+.card-con{
+    width: 200px;
+    height: 200px;
+    background-color: #242731;
+    padding-top: 20px;
+    border-radius: 10px;
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 25px;
+}
+
+.card-profile-pic{
+    width: 25%;
+    height: 50px;
+    border-radius: 100px;
+    background-color: white;
+    margin: 0 auto;
+    
+}
+
+.card-profile-name{
+    margin-bottom: 30px;
+}
+
+.card-entry{
+    margin: 0 auto;
+    width: 90%;
+    height: 10%;
+    margin-bottom: 5px;
+    /* background-color: #303030; */
+    border-radius: 10px;
+}
+
+.card-d-entry{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    padding-top: 5px;
+    font-size: 10pt;
+}
+
+.a-left{
+    float: left;
+    text-align: left;
+    padding-right: 20%;
+    /* padding-left: 5px; */
+}
+
+.a-center{
+    float: left;
+    text-align: center;
+    padding-right: 20%;
+}
+
+.a-right{
+    float: left;
+    text-align: right;
+}
+
+
+.right-div{
+    float: left;
+    /* background-color: aqua; */
+    width: 30%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    margin-left: 50px;
+}
+
+.appointments-ov{
+    width: 90%;
+    height: 45vh;
+    background-color: #3F8CFF;
+    border-radius: 20px;
+    margin-top: 20vh;
+}
+
+.appointments-ov-heading{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    padding-top: 10px;
+}
+
+.doctor-info-con{
+    width: 100%;
+    height: 200px;
+    /* background-color: white; */
+    margin-top: 100px;
+}
+
+.addDoctors-heading {
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    /* padding-top: 50px; */
+}
+
+.addDoc-con{
+    width: 100%;
+    height: 50px;
+    background-color: #242731;
+    border-radius: 10px;
+}
+
+.add-name-heading{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    float: left;
+    text-align: left;
+    margin: 0;
+    padding-top: 13px;
+    padding-left: 10px;
+}
+
+.name-input{
+    float: left;
+    width: 60%;
+    height: 20px;
+    margin-top: 14px;
+    margin-left: 25px;
+    border-radius: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    text-align: center;
+}
+
+.add-space{
+    margin-bottom: 20px;
+}
+
+.search{
+    margin-top: 12px;
+}
+
+.addDoctor-heading{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    margin-top: 20vh;
+}

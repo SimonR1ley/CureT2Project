@@ -1,0 +1,81 @@
+.patients-heading {
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+
+}
+
+.currentPatients-heading {
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    padding-top: 50px;
+}
+
+.entry-con-pat{
+    width: 95%;
+    height: 50px;
+    background-color: #242731;
+    border-radius: 10px;
+}
+
+.remove{
+    margin-top: 14px;
+}
+
+.name-input-pat{
+    float: left;
+    width: 60%;
+    height: 20px;
+    margin-top: 14px;
+    margin-left: 25px;
+    border-radius: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    text-align: center;
+}
+
+.add-patient-con{
+    width: 95%;
+    height: 50px;
+    background-color: #242731;
+    border-radius: 10px;
+}
+
+.addPatients-heading {
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    padding-top: 150px;
+}
+
+.add-patient{
+    width: 100px;
+    height: 30px;
+    margin: 0 auto;
+    background-color: #3F8CFF;
+    border: none;
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    /* border-radius: 10px; */
+}
+
+.left-div-patients{
+    float: left;
+    width: 45%;
+    height: 120vh;
+    /* background-color: #242731; */
+    margin-left: 20%;
+    padding-top: 4%;
+}
