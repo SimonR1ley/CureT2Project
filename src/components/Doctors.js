@@ -94,6 +94,25 @@ const Doctors = () => {
     }
 
 
+    // const deleteDoctor = (id) => {
+
+    //     let postId = parseInt(id);
+    //     console.log(parseInt(id));
+
+    //     if (window.confirm("Are you sure you want to delete this Doctor") === true) {
+
+
+    //         axios.post('http://localhost:80/apiMain/deleteDoctor.php', postId)
+    //             .then((res) => {
+    //                 let data = res.data.status;
+    //                 console.log(data);
+    //             });
+
+    //     } else {
+    //         console.log("The user did not delete the Doctor");
+    //     }
+    // }
+
 
 
     return (

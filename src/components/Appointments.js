@@ -3,6 +3,7 @@ import './appointments.css';
 import Header from './Header';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import AppointmentItem from './AppointmentItem';
 
 const Appointments = () => {
 
@@ -21,6 +22,7 @@ const Appointments = () => {
     const [room, setRoom] = useState();
 
     const [patients, setPatients] = useState();
+    
 
 
     useEffect(() => {
@@ -30,36 +32,7 @@ const Appointments = () => {
                 let data = res.data;
                 // console.log(data);
 
-                let appointments = data.map((item, index) =>
-
-                    <div className='appointments-display-con space' id={item.id}>
-                        <div>
-                            <div className='app-d-break'>
-                                <h2 className='app-d-name'>{item.doctor}</h2>
-                            </div>
-
-                            <div className='app-d-break'>
-                                <h2 className='app-d-name'>{item.patient}</h2>
-                            </div>
-
-                            <div className='app-d-break'>
-                                <h2 className='app-d-name'>{item.room}</h2>
-                            </div>
-
-                            <div className='app-d-break'>
-                                <h2 className='app-d-name'>{item.time}</h2>
-                            </div>
-
-                            <div className='app-d-break'>
-                                <h2 className='app-d-name'>{item.date}</h2>
-                            </div>
-
-                            <button className='remove' onClick={() => deleteAppointment(item.id)}>Delete</button>
-                        </div>
-
-                    </div>
-
-                );
+                let appointments = data.map((item) =>  <AppointmentItem key={item.id}  uniqueId={item.id}  doctor={item.doctor} patient={item.patient} room={item.room} date={item.date} time={item.time}/>);
 
                 setAppointments(appointments);
 
@@ -68,27 +41,6 @@ const Appointments = () => {
             });
 
     }, []);
-
-
-
-    const deleteAppointment = (id) => {
-        if (window.confirm("Are you sure you want to delete this Appointment") === true) {
-
-            // let postId;
-            console.log(id);
-
-            axios.post('http://localhost:80/apiMain/deleteAppointment.php', id)
-                .then((res) => {
-                    let data = res.data;
-                    console.log(data);
-                });
-
-        } else {
-            console.log("The user did not delete the appointment");
-        }
-    }
-
-
 
 
     // Doctors Display 
@@ -102,13 +54,13 @@ const Appointments = () => {
 
                 let doctors = data.map((item) =>
 
-                    <option value={item.name} className='drop-val'>{item.name} </option>
+                    <option key={item.id} value={item.name} className='drop-val'>{item.name} </option>
 
                 );
 
                 let room = data.map((item) =>
 
-                    <option value={item.room} className='drop-val'>{item.room} </option>
+                    <option key={item.id} value={item.room} className='drop-val'>{item.room} </option>
 
                 );
 
@@ -131,7 +83,7 @@ const Appointments = () => {
 
                 let patients = data.map((item) =>
 
-                    <option value={item.name} className='drop-val'>{item.name} </option>
+                    <option key={item.id} value={item.name} className='drop-val'>{item.name} </option>
 
 
                 );
@@ -177,6 +129,14 @@ const Appointments = () => {
                 console.log(response);
             });
     }
+
+
+
+
+    
+
+
+
 
 
 

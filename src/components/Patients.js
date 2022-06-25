@@ -72,7 +72,7 @@ const Patients = () => {
         setInputs({ ...inputs, age: value });
     }
 
-    const contactVal = (e) => {
+    const contactVal = (e) => { 
         const value = e.target.value;
         setInputs({ ...inputs, contact: value });
     }
