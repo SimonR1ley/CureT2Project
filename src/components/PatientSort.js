@@ -1,13 +1,15 @@
 import React from 'react';
 import EditPatients from "./EditPatients";
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Patients from './Patients';
 
 const PatientSort = (props) => {
 
     const [modal, setModal] = useState();
-    const [modalHome, setModalHome] = useState()
+    const [modalHome, setModalHome] = useState();
+
+    const [permission, setPermission] = useState();
 
     const editPatient = () => {
         setModal(<EditPatients upRender={props.rerender} rerender={setModal} id={props.uniqueId} name={props.name} age={props.age} gender={props.gender} email={props.email} contact={props.contact} patientID={props.patientID} medicalAid={props.medicalAid}/>);
@@ -30,6 +32,23 @@ const PatientSort = (props) => {
             console.log("The user did not delete the pateint");
         }
     }
+
+
+    useEffect(() => {
+
+        let userPermission = sessionStorage.getItem('activeUser');
+
+        if (userPermission === "Simon") {
+
+            setPermission(
+                <div>
+                    <button className="remove edit-button" onClick={editPatient}>Edit</button>
+                <button className="remove remove-button" onClick={deletePatient}>Remove</button>
+                </div>);
+
+        }
+
+    }, []);
 
 
     return (
@@ -68,8 +87,7 @@ const PatientSort = (props) => {
                     <h2 className='card-d-entry'>Madical Aid: {props.medicalAid}</h2>
                 </div>
 
-                <button className="remove edit-button" onClick={editPatient}>Edit</button>
-                <button className="remove remove-button" onClick={deletePatient}>Remove</button>
+                {permission}
 
 
             </div>

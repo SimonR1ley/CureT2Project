@@ -1,6 +1,6 @@
 .left-div {
     float: left;
-    width: 45%;
+    width: 78%;
     height: 90vh;
     /* background-color: #242731; */
     margin-left: 20%;
@@ -76,14 +76,15 @@
 }
 
 .card-con{
-    width: 300px;
-    height: 600px;
+    width: 260px;
+    height: auto;
     background-color: #242731;
     padding-top: 20px;
     border-radius: 10px;
     float: left;
     margin-bottom: 20px;
     margin-right: 25px;
+    padding-bottom: 25px;
 }
 
 .card-profile-pic{

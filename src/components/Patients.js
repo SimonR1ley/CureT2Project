@@ -29,6 +29,8 @@ const Patients = (props) => {
 
     const [appointments, setAppointments] = useState();
 
+    const [permission, setPermission] = useState();
+
 
     useEffect(() => {
 
@@ -133,45 +135,77 @@ const Patients = (props) => {
 
                 let filteredData;
 
-                for(var i = 0; i < data.length; i++){
+                for (var i = 0; i < data.length; i++) {
                     filteredData = data[i].patient.filter(patient => patient.includes(patientsName));
                 }
 
 
-              console.log(filteredData)
-                        
-                        let appointments = data.map((item) =>
-                        
-                        <div className='entry-con-pat-ext spacing'>
-                                <h2 className='pat-ext-heading-main'>{item.patient}</h2>
-                                <h2 className='pat-ext-heading-bigger'>Appointments</h2>
-                                <div className="pat-ext-entry-con">
+                console.log(filteredData)
 
-                                    <div className="pat-ext-split">
-                                        <h2 className='pat-ext-heading'>Doctor: {item.doctor}</h2>
-                                    </div>
-                                    <div className="pat-ext-split">
-                                        <h2 className='pat-ext-heading'>Room: {item.room}</h2>
-                                    </div>
-                                    <div className="pat-ext-split">
-                                        <h2 className='pat-ext-heading'>Date: {item.date}</h2>
-                                    </div>
-                                    <div className="pat-ext-split">
-                                        <h2 className='pat-ext-heading'>Time: {item.time}</h2>
-                                    </div>
+                let appointments = data.map((item) =>
 
-                                </div>
+                    <div className='entry-con-pat-ext spacing'>
+                        <h2 className='pat-ext-heading-main'>{item.patient}</h2>
+                        <h2 className='pat-ext-heading-bigger'>Appointments</h2>
+                        <div className="pat-ext-entry-con">
+
+                            <div className="pat-ext-split">
+                                <h2 className='pat-ext-heading'>Doctor: {item.doctor}</h2>
                             </div>
-                        );
-                        
-                        console.log(appointments);
-                        setAppointments(appointments)
-                        
-             
+                            <div className="pat-ext-split">
+                                <h2 className='pat-ext-heading'>Room: {item.room}</h2>
+                            </div>
+                            <div className="pat-ext-split">
+                                <h2 className='pat-ext-heading'>Date: {item.date}</h2>
+                            </div>
+                            <div className="pat-ext-split">
+                                <h2 className='pat-ext-heading'>Time: {item.time}</h2>
+                            </div>
+
+                        </div>
+                    </div>
+                );
+
+                console.log(appointments);
+                setAppointments(appointments)
+
+
 
             });
 
-    },[]);
+    }, []);
+
+
+
+    useEffect(() => {
+
+        let userPermission = sessionStorage.getItem('activeUser');
+
+        if (userPermission === "Simon") {
+
+            setPermission(
+                <div>
+                    <h2 className='add-patients-heading'>Add Patient</h2>
+                    <div className='pat-top-con'>
+                        <input className='add-input-pat' placeholder="name" onChange={nameVal}></input>
+                        <input className='add-input-pat' placeholder="email" onChange={emailVal}></input>
+                        <input className='add-input-pat' placeholder="age" onChange={ageVal}></input>
+                        <input className='add-input-pat' placeholder="contact" onChange={contactVal}></input>
+                        <select className='gender-input-pat' onChange={genderVal}>
+                            <option>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                        <input className='add-input-pat' placeholder="Doctor Id" onChange={patientIDVal}></input>
+                        <input className='add-input-pat' placeholder="Medical Aid" onChange={medicalAidVal}></input>
+                        <button className="add-patient-btn" onClick={addPatient}>Add</button>
+                    </div>
+                </div>);
+
+        }
+
+    }, []);
 
 
 
@@ -184,6 +218,8 @@ const Patients = (props) => {
             <div className='left-div-patients'>
 
                 <h1 className='patients-heading'>Patients</h1>
+
+                {permission}
 
                 <h2 className='currentPatients-heading'>Current Patients</h2>
 
@@ -198,47 +234,6 @@ const Patients = (props) => {
 
             </div>
 
-            <div className="right-div">
-
-                <h2 className='addPatients-heading'>Add Patient</h2>
-
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>Name</p>
-                    <input className='name-input-pat' onChange={nameVal}></input>
-                </div>
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>Email</p>
-                    <input className='name-input-pat' onChange={emailVal}></input>
-                </div>
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>Age</p>
-                    <input className='name-input-pat' onChange={ageVal}></input>
-                </div>
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>Cell No.</p>
-                    <input className='name-input-pat' onChange={contactVal}></input>
-                </div>
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>Gender</p>
-                    <select className='name-input-pat' onChange={genderVal}>
-                        <option>Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>ID Number</p>
-                    <input className='name-input-pat' onChange={patientIDVal}></input>
-                </div>
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>Medical Aid</p>
-                    <input className='name-input-pat' onChange={medicalAidVal}></input>
-                </div>
-
-                <button className="add-patient" onClick={addPatient}>Add</button>
-
-            </div>
 
 
             {props.modal}
@@ -252,27 +247,6 @@ const Patients = (props) => {
                         </select>
                     </div>
                 </div>
-                {/* <div className='entry-con-pat-ext spacing'>
-                    <h2 className='pat-ext-heading-main'>Jimmy Neutron</h2>
-                    <h2 className='pat-ext-heading-bigger'>Appointments</h2>
-                    <div className="pat-ext-entry-con">
-
-                        <div className="pat-ext-split">
-                            <h2 className='pat-ext-heading'>Doctor: </h2>
-                        </div>
-                        <div className="pat-ext-split">
-                            <h2 className='pat-ext-heading'>Room: </h2>
-                        </div>
-                        <div className="pat-ext-split">
-                            <h2 className='pat-ext-heading'>Date: </h2>
-                        </div>
-                        <div className="pat-ext-split">
-                            <h2 className='pat-ext-heading'>Time: </h2>
-                        </div>
-
-                    </div>
-                </div> */}
-
                 {appointments}
             </div>
 
