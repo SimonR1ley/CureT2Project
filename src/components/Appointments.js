@@ -40,7 +40,7 @@ const Appointments = () => {
                 //    let renderPost = data.map((item) => <PostItem userpost={item.userpost} date={item.timestamp} message={item.message}/>)
             });
 
-    }, []);
+    }, [appointments]);
 
 
     // Doctors Display 
@@ -189,6 +189,9 @@ const Appointments = () => {
                 </div>
 
             </div>
+
+            
+
         </div>
     );
 }

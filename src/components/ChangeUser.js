@@ -1,7 +1,7 @@
 import React from 'react';
 import './ChangeUser.css';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,19 +11,19 @@ const ChangeUser = () => {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
-        email: '',
+        username: '',
         password: ''
     });
 
-    const emailVal = (e) => {
-        const value = e.target.value
-        setInputs({ ...inputs, email: value });
+    const usernameVal = (e) => {
+        const value = e.target.value.trim();
+        setInputs({...inputs, username: value});
         // Here you will validate 
     }
 
     const passwordVal = (e) => {
-        const value = e.target.value
-        setInputs({ ...inputs, password: value });
+        const value = e.target.value.trim();
+        setInputs({...inputs, password: value});
     }
 
 
@@ -34,14 +34,13 @@ const ChangeUser = () => {
 
         console.log(inputs);
 
-
         axios.post('http://localhost:80/apiMain/userLogin.php', inputs)
-            .then(function (response) {
-                console.log(response);
+        .then(function(response){
+            console.log(response);
 
                 if (response.data === true) {
-                    sessionStorage.setItem('activeUser', inputs.email);
-                    navigate("../ComOne");
+                    sessionStorage.setItem('activeUser', inputs.username);
+                    navigate("/comone");
                 } else {
                     console.log("Not Working");
                 }
@@ -71,9 +70,9 @@ const ChangeUser = () => {
                     <h1 className='changeUser-heading'>Login</h1>
                     {/* <p className='profile-info-name'>Jimmy Neutron</p> */}
                     <form>
-                    <input className='profile-email' placeholder='Email' type='email' onChange={emailVal}></input>
-                    <input className='profile-password' placeholder='Password' type='password' onChange={passwordVal}></input>
-                    <Link to="/comone"><button className='login-btn' type='submit' onClick={handleSubmit}>Login</button></Link>
+                    <input className='profile-email' placeholder='User Name' type='username' onChange={usernameVal}/>
+                    <input className='profile-password' placeholder='Password' type='password' onChange={passwordVal}/>
+                    <button className='login-btn' type='submit' onClick={handleSubmit}>Login</button>
                     </form>
                 </div>
 

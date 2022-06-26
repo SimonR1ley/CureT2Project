@@ -3,6 +3,7 @@ import './Doctors.css';
 import Header from './Header';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import DoctorSort from './DoctorSort';
 
 const Doctors = () => {
 
@@ -13,9 +14,14 @@ const Doctors = () => {
         email: '',
         age: '',
         contact: '',
-        room: ''
+        room: '',
+        gender: '',
+        doctorId: '',
+        specialisation: ''
     });
 
+
+    const [renderDoctors, setRenderDoctors] = useState();
 
 
     useEffect(() => {
@@ -23,39 +29,16 @@ const Doctors = () => {
         axios.post('http://localhost:80/apiMain/doctorsDisplay.php')
             .then((res) => {
                 let data = res.data;
-                console.log(data);
-
-                let doctors = data.map((item) =>
-
-                    <div className='card-con'>
-
-                        <div className='card-profile-pic'></div>
-
-                        <div className='card-profile-name'>
-                            <h2 className='card-d-entry'>{item.name}</h2>
-                        </div>
-
-                        <div className='card-entry'>
-                            <h2 className='card-d-entry'>Room: {item.room}</h2>
-                        </div>
-
-                        <div className='card-entry'>
-                            <h2 className='card-d-entry'>{item.email}</h2>
-                        </div>
-
-                        <div className='card-entry'>
-                            <h2 className='card-d-entry'>Contact Number - {item.contact}</h2>
-                        </div>
-
-                    </div>
-
-                );
+                // console.log(data);
+                
+                let doctors = data.map((item) => <DoctorSort key={item.id} rerender={setRenderDoctors} uniqueId={item.id} name={item.name} room={item.room} email={item.email} contact={item.contact} age={item.age} gender={item.gender} doctorId={item.doctorId} specialisation={item.specialisation} />);
+                setRenderDoctors(false);
 
                 setDoctors(doctors);
 
             });
 
-    }, []);
+    }, [doctors]);
 
 
     const nameVal = (e) => {
@@ -81,16 +64,31 @@ const Doctors = () => {
     const roomVal = (e) => {
         const value = e.target.value;
         setInputs({ ...inputs, room: value });
+    }
+
+    const genderVal = (e) => {
+        const value = e.target.value;
+        setInputs({ ...inputs, gender: value });
         console.log(value);
     }
 
+    const doctorIdVal = (e) => {
+        const value = e.target.value;
+        setInputs({ ...inputs, doctorId: value });
+    }
 
-    const addDoctor = () =>{
+    const specialisationVal = (e) => {
+        const value = e.target.value;
+        setInputs({ ...inputs, specialisation: value });
+    }
+
+
+    const addDoctor = () => {
 
         axios.post('http://localhost:80/apiMain/addDoctor.php', inputs)
-        .then(function (response) {
-            console.log(response);
-        });
+            .then(function (response) {
+                console.log(response);
+            });
     }
 
 
@@ -127,60 +125,30 @@ const Doctors = () => {
 
                 <div className='d-display'>
 
-                    <div className='card-con'>
-
-                        <div className='card-profile-pic'></div>
-
-                        <div className='card-profile-name'>
-                            <h2 className='card-d-entry'>Jimmy Neutron</h2>
-                        </div>
-
-                        <div className='card-entry'>
-                            <h2 className='card-d-entry'>Room: 201</h2>
-                        </div>
-
-                        <div className='card-entry'>
-                            <h2 className='card-d-entry'>jn@gmail.com</h2>
-                        </div>
-
-                        <div className='card-entry'>
-                            <h2 className='card-d-entry'>Contact Number - 0821115897</h2>
-                        </div>
-
-                    </div>
-
                     {doctors}
+                    {/* <div className="edit hide" >
+                        <h2 className='edit-heading'>Edit PatientName Profile</h2>
 
-                </div>
-
-
-
-                <div className='doctor-info-con'>
-                    <h2 className='addDoctors-heading'>Doctors Information</h2>
-
-                    <div className='addDoc-con add-space'>
-                        <p className='add-name-heading'>Name</p>
-                        <input className='name-input'></input>
-                        <button className='search'>Search</button>
-                    </div>
-
-                    <div className='addDoc-con'>
-                        <div className='Heading-con first'>
-                            <h2 className='d-entry'>#1</h2>
+                        <div className='add-con add-space'>
+                            <p className='add-name-heading-edit'>Name</p>
+                            <input className='name-input-pat-edit' onChange={nameVal}></input>
                         </div>
-                        <div className='Heading-con'>
-                            <h2 className='d-entry'>Jimmy Neutron</h2>
+                        <div className='add-con add-space'>
+                            <p className='add-name-heading-edit'>Email</p>
+                            <input className='name-input-pat-edit' onChange={emailVal}></input>
                         </div>
-                        <div className='Heading-con'>
-                            <h2 className='d-entry'>j@gmail.com</h2>
+                        <div className='add-con add-space'>
+                            <p className='add-name-heading-edit'>Age</p>
+                            <input className='name-input-pat-edit' onChange={ageVal}></input>
                         </div>
-                        <div className='Heading-con'>
-                            <h2 className='d-entry'>3</h2>
+                        <div className='add-con add-space'>
+                            <p className='add-name-heading-edit'>Cell No.</p>
+                            <input className='name-input-pat-edit' onChange={contactVal}></input>
                         </div>
-                        <div className='Heading-con'>
-                            <button className="remove">Remove</button>
-                        </div>
-                    </div>
+
+                        <button className="edit-btn">Change</button>
+
+                    </div> */}
 
                 </div>
 
@@ -213,6 +181,23 @@ const Doctors = () => {
                 <div className='add-patient-con add-space'>
                     <p className='add-name-heading'>Cell No.</p>
                     <input className='name-input-pat' onChange={contactVal}></input>
+                </div>
+                <div className='add-patient-con add-space'>
+                    <p className='add-name-heading'>Gender</p>
+                    <select className='name-input-pat' onChange={genderVal}>
+                        <option>Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div className='add-patient-con add-space'>
+                    <p className='add-name-heading'>Doctor Id</p>
+                    <input className='name-input-pat' onChange={doctorIdVal}></input>
+                </div>
+                <div className='add-patient-con add-space'>
+                    <p className='add-name-heading'>Specialisation</p>
+                    <input className='name-input-pat' onChange={specialisationVal}></input>
                 </div>
 
                 <button className="add-patient" onClick={addDoctor}>Add</button>

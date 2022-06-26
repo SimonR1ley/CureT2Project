@@ -56,15 +56,17 @@ const ComOne = () => {
     const [doctors, setDoctors] = useState();
     const [patients, setPatients] = useState();
 
+    let currentUser = sessionStorage.getItem('activeUser');
 
-    // useEffect(() => {
 
-    //     const userSession = sessionStorage.getItem('activeUser');
-    //     if(userSession === '' || userSession === null){
-    //       navigate('/changeuser');
-    //     }
+    useEffect(() => {
+
+        const userSession = sessionStorage.getItem('activeUser');
+        if(userSession === '' || userSession === null){
+          navigate('/changeuser');
+        }
     
-    //   },[]);
+      },[]);
 
 
     useEffect(() => {
@@ -130,7 +132,7 @@ const ComOne = () => {
             <Header />
 
             <div className='welcome-div'>
-                <h2 className='welcome-one'>Hi Jimmy,</h2>
+                <h2 className='welcome-one'>Hi {currentUser},</h2>
                 <h1 className='welcome-two'>What Will You Be Doing Today?</h1>
             </div>
 

@@ -2,20 +2,32 @@ import "./patients.css";
 import Header from './Header';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import PatientSort from "./PatientSort";
+import EditPatients from "./EditPatients";
+import Appointments from "./Appointments";
 
-const Patients = () => {
+const Patients = (props) => {
 
     const [patients, setPatients] = useState();
+
+    const [patientsDrop, setPatientsDrop] = useState();
+
+    const [patientsName, setPatientsName] = useState("Fredrick Donald");
 
     const [inputs, setInputs] = useState({
         name: '',
         email: '',
         age: '',
-        contact: ''
+        contact: '',
+        gender: '',
+        patientID: '',
+        medicalAid: ''
     });
 
 
-    const [PatientName, setPatientName] = useState([]);
+    const [renderPatients, setRenderPatients] = useState();
+
+    const [appointments, setAppointments] = useState();
 
 
     useEffect(() => {
@@ -23,39 +35,15 @@ const Patients = () => {
         axios.post('http://localhost:80/apiMain/patientDisplay.php')
             .then((res) => {
                 let data = res.data;
-                console.log(data);
+                // console.log(data);
 
-
-
-                let patients = data.map((item) =>
-
-                    <div className='entry-con-pat spacing' id={item.id}>
-                        <div className='Heading-con first'>
-                            <h2 className='d-entry'>{item.length}</h2>
-                        </div>
-                        <div className='Heading-con'>
-                            <h2 className='d-entry'>{item.name}</h2>
-                        </div>
-                        <div className='Heading-con'>
-                            <h2 className='d-entry'>{item.email}</h2>
-                        </div>
-                        <div className='Heading-con'>
-                            <h2 className='d-entry'>{item.id_number}</h2>
-                        </div>
-                        <div className='Heading-con'>
-                            <button className="remove" onClick={() => deletePatient(item.id)}>Remove</button>
-                        </div>
-                    </div>
-
-                );
+                let patients = data.map((item) => <PatientSort key={item.id} rerender={setRenderPatients} uniqueId={item.id} name={item.name} email={item.email} contact={item.contact} age={item.age} gender={item.gender} patientID={item.patientID} medicalAid={item.medicalAid} />);
+                setRenderPatients(false);
 
                 setPatients(patients);
-
-                //    setpostMessage({...postMessage, message: messageVal});
-                //    let renderPost = data.map((item) => <PostItem userpost={item.userpost} date={item.timestamp} message={item.message}/>)
             });
 
-    }, []);
+    }, [patients]);
 
     const nameVal = (e) => {
         const value = e.target.value;
@@ -72,86 +60,119 @@ const Patients = () => {
         setInputs({ ...inputs, age: value });
     }
 
-    const contactVal = (e) => { 
+    const contactVal = (e) => {
         const value = e.target.value;
         setInputs({ ...inputs, contact: value });
     }
 
+    const genderVal = (e) => {
+        const value = e.target.value;
+        setInputs({ ...inputs, gender: value });
+        console.log(value)
+    }
 
-    const addPatient = () =>{
+    const patientIDVal = (e) => {
+        const value = e.target.value;
+        setInputs({ ...inputs, patientID: value });
+    }
+
+    const medicalAidVal = (e) => {
+        const value = e.target.value;
+        setInputs({ ...inputs, medicalAid: value });
+    }
+
+
+    const addPatient = () => {
 
         axios.post('http://localhost:80/apiMain/addPatient.php', inputs)
-        .then(function (response) {
-            console.log(response);
-        });
-    }
-
-    const deletePatient = (id) => {
-        if (window.confirm("Are you sure you want to delete this Patient") === true) {
-
-            // let postId;
-            console.log(id);
-
-            axios.post('http://localhost:80/apiMain/deletePatient.php', id)
-                .then((res) => {
-                    // postId = data.id;
-                    let data = res.data;
-                    console.log(data);
-                    // props.rerender(true);
-                });
-
-        } else {
-            console.log("The user did not delete the patient");
-        }
+            .then(function (response) {
+                console.log(response);
+            });
     }
 
 
 
+    // Patient Name Drop Down
+    useEffect(() => {
 
-// Patient Search 
-
-    const SearchName = (e) => {
-
-        let value = e.target.value;
-
-        axios.post('http://localhost:80/apiMain/patientSearch.php', value)
+        axios.post('http://localhost:80/apiMain/patientDisplay.php')
             .then((res) => {
                 let data = res.data;
-                console.log(data);
+                // console.log(data);
 
-                
+                let patients = data.map((item) =>
 
-                let patient = data.map((item) =>
+                    <option key={item.id} value={item.name} className='drop-val'>{item.name} </option>
 
-                <div className='entry-con-pat spacing'>
-                <div className='Heading-con first'>
-                    <h2 className='d-entry'>{item.id}</h2>
-                </div>
-                <div className='Heading-con'>
-                    <h2 className='d-entry'>{item.name}</h2>
-                </div>
-                <div className='Heading-con'>
-                    <h2 className='d-entry'>{item.email}</h2>
-                </div>
-                <div className='Heading-con'>
-                    <h2 className='d-entry'>{item.age}</h2>
-                </div>
-                <div className='Heading-con'>
-                    <button className="remove">Remove</button>
-                </div>
-            </div>
 
                 );
-                
-                if(value == data.name){
-                    setPatientName(patient);
-                }
 
-                
+                setPatientsDrop(patients);
+                // setPatientsName(item.name);
 
             });
 
-    };
+    }, []);
+
+
+    const PatientNameComp = (e) => {
+        let value = e.target.value;
+        setPatientsName(value.toString());
+        console.log(value)
+    }
+
+
+    // Appointments Display
+
+    useEffect(() => {
+
+        axios.post('http://localhost:80/apiMain/appointmentsDisplay.php')
+            .then((res) => {
+                let data = res.data;
+                // console.log(data[0].patient);
+
+                let filteredData;
+
+                for(var i = 0; i < data.length; i++){
+                    filteredData = data[i].patient.filter(patient => patient.includes(patientsName));
+                }
+
+
+              console.log(filteredData)
+                        
+                        let appointments = data.map((item) =>
+                        
+                        <div className='entry-con-pat-ext spacing'>
+                                <h2 className='pat-ext-heading-main'>{item.patient}</h2>
+                                <h2 className='pat-ext-heading-bigger'>Appointments</h2>
+                                <div className="pat-ext-entry-con">
+
+                                    <div className="pat-ext-split">
+                                        <h2 className='pat-ext-heading'>Doctor: {item.doctor}</h2>
+                                    </div>
+                                    <div className="pat-ext-split">
+                                        <h2 className='pat-ext-heading'>Room: {item.room}</h2>
+                                    </div>
+                                    <div className="pat-ext-split">
+                                        <h2 className='pat-ext-heading'>Date: {item.date}</h2>
+                                    </div>
+                                    <div className="pat-ext-split">
+                                        <h2 className='pat-ext-heading'>Time: {item.time}</h2>
+                                    </div>
+
+                                </div>
+                            </div>
+                        );
+                        
+                        console.log(appointments);
+                        setAppointments(appointments)
+                        
+             
+
+            });
+
+    },[]);
+
 
 
     return (
@@ -165,58 +186,14 @@ const Patients = () => {
                 <h1 className='patients-heading'>Patients</h1>
 
                 <h2 className='currentPatients-heading'>Current Patients</h2>
-                <div className='entry-con-pat'>
-                    <div className='Heading-con first'>
-                        <h2 className='d-heading'>#</h2>
-                    </div>
-                    <div className='Heading-con'>
-                        <h2 className='d-heading'>Name</h2>
-                    </div>
-                    <div className='Heading-con'>
-                        <h2 className='d-heading'>Email</h2>
-                    </div>
-                    <div className='Heading-con'>
-                        <h2 className='d-heading'>ID No.</h2>
-                    </div>
-
-                    <div className='Heading-con'>
-                        <h2 className='d-heading'>Remove</h2>
-                    </div>
-
-                </div>
 
                 <div className='d-display'>
 
-                {patients}
+                    {patients}
+                    {/* {modal} */}
 
                 </div>
 
-
-                <h2 className='currentPatients-heading'>Patient Information</h2>
-
-                <div className='add-patient-con add-space'>
-                    <p className='add-name-heading'>Name</p>
-                    <input className='name-input-pat' onChange={SearchName}></input>
-                </div>
-                <div className='entry-con-pat spacing'>
-                    <div className='Heading-con first'>
-                        <h2 className='d-entry'>#1</h2>
-                    </div>
-                    <div className='Heading-con'>
-                        <h2 className='d-entry'>Jimmy Neutron</h2>
-                    </div>
-                    <div className='Heading-con'>
-                        <h2 className='d-entry'>j@gmail.com</h2>
-                    </div>
-                    <div className='Heading-con'>
-                        <h2 className='d-entry'>3</h2>
-                    </div>
-                    <div className='Heading-con'>
-                        <button className="remove">Remove</button>
-                    </div>
-                </div>
-
-                    {/* {PatientName} */}
 
 
             </div>
@@ -241,10 +218,65 @@ const Patients = () => {
                     <p className='add-name-heading'>Cell No.</p>
                     <input className='name-input-pat' onChange={contactVal}></input>
                 </div>
+                <div className='add-patient-con add-space'>
+                    <p className='add-name-heading'>Gender</p>
+                    <select className='name-input-pat' onChange={genderVal}>
+                        <option>Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div className='add-patient-con add-space'>
+                    <p className='add-name-heading'>ID Number</p>
+                    <input className='name-input-pat' onChange={patientIDVal}></input>
+                </div>
+                <div className='add-patient-con add-space'>
+                    <p className='add-name-heading'>Medical Aid</p>
+                    <input className='name-input-pat' onChange={medicalAidVal}></input>
+                </div>
 
                 <button className="add-patient" onClick={addPatient}>Add</button>
 
             </div>
+
+
+            {props.modal}
+
+            <h2 className='patients-ext-heading'>Patients Information</h2>
+            <div className='patients-ext-con'>
+                <div className="pat-ext-input-con">
+                    <div className='app-con'>
+                        <select name="Patients" className="patient-dropdown" onChange={PatientNameComp}>
+                            {patientsDrop}
+                        </select>
+                    </div>
+                </div>
+                {/* <div className='entry-con-pat-ext spacing'>
+                    <h2 className='pat-ext-heading-main'>Jimmy Neutron</h2>
+                    <h2 className='pat-ext-heading-bigger'>Appointments</h2>
+                    <div className="pat-ext-entry-con">
+
+                        <div className="pat-ext-split">
+                            <h2 className='pat-ext-heading'>Doctor: </h2>
+                        </div>
+                        <div className="pat-ext-split">
+                            <h2 className='pat-ext-heading'>Room: </h2>
+                        </div>
+                        <div className="pat-ext-split">
+                            <h2 className='pat-ext-heading'>Date: </h2>
+                        </div>
+                        <div className="pat-ext-split">
+                            <h2 className='pat-ext-heading'>Time: </h2>
+                        </div>
+
+                    </div>
+                </div> */}
+
+                {appointments}
+            </div>
+
+
         </div>
     );
 }
