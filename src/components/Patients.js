@@ -12,7 +12,7 @@ const Patients = (props) => {
 
     const [patientsDrop, setPatientsDrop] = useState();
 
-    const [patientsName, setPatientsName] = useState("Fredrick Donald");
+    const [patientsName, setPatientsName] = useState();
 
     const [inputs, setInputs] = useState({
         name: '',
@@ -117,12 +117,6 @@ const Patients = (props) => {
     }, []);
 
 
-    const PatientNameComp = (e) => {
-        let value = e.target.value;
-        setPatientsName(value.toString());
-        console.log(value)
-    }
-
 
     // Appointments Display
 
@@ -134,19 +128,19 @@ const Patients = (props) => {
                 // console.log(data[0].patient);
 
                 let filteredData;
-
-                for (var i = 0; i < data.length; i++) {
-                    filteredData = data[i].patient.filter(patient => patient.includes(patientsName));
-                }
+                // patientsName
 
 
-                console.log(filteredData)
 
-                let appointments = data.map((item) =>
+
+                let appointments = data.filter((val) => {
+                    if(val.patient.includes(patientsName)){
+                        return val
+                    }
+                }).map((item) =>
 
                     <div className='entry-con-pat-ext spacing'>
-                        <h2 className='pat-ext-heading-main'>{item.patient}</h2>
-                        <h2 className='pat-ext-heading-bigger'>Appointments</h2>
+                        <h2 className='pat-ext-heading-bigger'>{item.patient}</h2>
                         <div className="pat-ext-entry-con">
 
                             <div className="pat-ext-split">
@@ -173,7 +167,7 @@ const Patients = (props) => {
 
             });
 
-    }, []);
+    }, [appointments]);
 
 
 
@@ -246,11 +240,12 @@ const Patients = (props) => {
             <div className='patients-ext-con'>
                 <div className="pat-ext-input-con">
                     <div className='app-con'>
-                        <select name="Patients" className="patient-dropdown" onChange={PatientNameComp}>
+                        <select name="Patients" className="patient-dropdown" onChange={(event) => {setPatientsName(event.target.value)}}>
                             {patientsDrop}
                         </select>
                     </div>
                 </div>
+                <h2 className='pat-ext-heading-main'>Appointments</h2>
                 {appointments}
             </div>
 

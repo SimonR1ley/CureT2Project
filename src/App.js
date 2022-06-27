@@ -7,6 +7,7 @@ import Patients from './components/Patients';
 import Appointments from './components/Appointments';
 import ChangeUser from './components/ChangeUser';
 import NewUser from './components/NewUser';
+import MyProfile from './components/MyProfile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/appointments' element={<Appointments />} />
         <Route path='/changeuser' element={<ChangeUser />} />
         <Route path='/newuser' element={<NewUser />} />
+        <Route path='/myprofile' element={<MyProfile />} />
       </Routes>
     </div>
   );

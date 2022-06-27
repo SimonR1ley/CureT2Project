@@ -1,0 +1,51 @@
+.my-account-heading {
+    float: left;
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    width: 30%;
+    float: left;
+    margin-left: 20%;
+    padding-top: 4%;
+    margin-bottom: 10vh;
+}
+
+.con {
+
+    float: left;
+
+    /* margin-top: 30vh; */
+    width: 50%;
+    height: 50vh;
+    margin-left: 20%;
+    /* background-color: blue; */
+}
+
+.pp-con{
+    width: 20%;
+    height: 40%;
+    background-color: black;
+    /* border-radius: 100px; */
+    /* margin: 0 auto; */
+    float: left;
+    margin-right: 20px;
+}
+
+.my-account-subH{
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /* float: left; */
+    padding-bottom: 19px;
+}
+
+.text-con{
+    float: left;
+}

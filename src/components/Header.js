@@ -35,6 +35,10 @@ const Header = () => {
                     <p className='icon-name'><Link to="/appointments">Appointments</Link></p>
                 </div>
 
+                <div className='nav-item space'>
+                    <p className='icon-name'><Link to="/myprofile">My Profile</Link></p>
+                </div>
+
                 {/* <div className='profile-con'>
                     <div className='profile-pic'></div>
                     <div className='profile-name'>

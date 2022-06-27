@@ -80,7 +80,7 @@ code {
   margin: 0;
   padding: 0;
   float: left;
-  margin-top: 50%;
+  margin-top: 20%;
   /* background-color: #1F1F1F; */
   margin-left: 15%;
   border-radius: 10px;
@@ -171,7 +171,7 @@ code {
 }
 
 .One {
-  margin-top: 10vh;
+  margin-top: 7vh;
 }
 
 .space {
