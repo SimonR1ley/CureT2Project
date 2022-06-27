@@ -13,6 +13,9 @@ const MyProfile = () => {
     const [users, setUsers] = useState();
     const [renderImage, setRenderImage] = useState();
 
+    const [usersEdit, setusersEdit] = useState();
+    
+    const [renderUsers, setRenderUsers] = useState();
     // const [currentUser, setCurrentUser] = useState();
 
    let currentUser = sessionStorage.getItem('activeUser');
@@ -29,7 +32,7 @@ const MyProfile = () => {
         let data = res.data;
 
         let source = data[0].imgPath;
-        let renderpath = 'http://localhost:80/apiMain/profiles/' + source;
+        let renderpath = 'http://localhost:80/apiMain/' + source;
         setRenderImage(renderpath);
 
     }).catch(err=>{
@@ -44,10 +47,15 @@ const MyProfile = () => {
             .then((res) => {
                 let data = res.data;
 
-                let source = data[0].imgPath;
-                let renderpath = 'http://localhost:80/apiMain/profiles/' + source;
-                setRenderImage(renderpath);
-    
+                let usersEdit = data.filter((val) => {
+                    if (val.name.includes(currentUser)) {
+                        return val
+                    }
+                }).map((item) => 
+                
+                <MyProfileSort  key={item.id} rerender={setRenderUsers} uniqueId={item.id} name={item.name} username={item.username} email={item.email} password={item.password}/>);
+
+                // console.log(data)
 
                 let users = data.filter((val) => {
                     if (val.name.includes(currentUser)) {
@@ -67,6 +75,7 @@ const MyProfile = () => {
                 );
 
                 setUsers(users);
+                setusersEdit(usersEdit)
             });
 
     }, [users]);
@@ -81,16 +90,8 @@ const MyProfile = () => {
             {/* <img src={renderImage} className='dashProfile' /> */}
 
             <h2 className='my-account-heading'>My Account</h2>
-            {/* <div className='con'>
-                <div className='pp-con'></div>
-                <div className='text-con'>
-                <h4 className='my-account-subH'>Name:</h4>
-                <h4 className='my-account-subH'>Email:</h4>
-                <h4 className='my-account-subH'>Username:</h4>
-                <h4 className='my-account-subH'>Password:</h4>
-                </div>
-            </div> */}
             {users}
+            {usersEdit}
 
         </div>
     );

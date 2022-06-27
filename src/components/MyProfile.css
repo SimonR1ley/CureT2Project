@@ -19,14 +19,14 @@
 
     /* margin-top: 30vh; */
     width: 50%;
-    height: 50vh;
+    height: 30vh;
     margin-left: 20%;
     /* background-color: blue; */
 }
 
 .pp-con{
     width: 20%;
-    height: 40%;
+    height: 20vh;
     background-color: black;
     /* border-radius: 100px; */
     /* margin: 0 auto; */
@@ -48,4 +48,12 @@
 
 .text-con{
     float: left;
+}
+
+.edit-myProfile-con{
+    width: 50%;
+    height: 90vh;
+    float: left;
+    margin-left: 30%;
+    
 }
