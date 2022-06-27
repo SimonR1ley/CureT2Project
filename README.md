@@ -50,7 +50,6 @@
     * [Video Demonstration](#video-demonstration)
 * [License](#license)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 <!--PROJECT DESCRIPTION-->
 ## About the Project
@@ -159,9 +158,4 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 * **Simon Riley** - [170044@virtualwindow.co.za](170044@virtualwindow.co.za) - [@simonbrettriley](https://www.instagram.com/instagram_handle/) 
 * **Project Link** - https://github.com/SimonR1ley/CureT2Project
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-<!-- all resources that you used and Acknowledgements here -->
-* [React Three](https://www.npmjs.com/package/@react-three/fiber)
 
