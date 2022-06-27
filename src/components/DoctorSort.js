@@ -35,15 +35,13 @@ const DoctorSort = (props) => {
 
         let userPermission = sessionStorage.getItem('activeUser');
 
-        if (userPermission === "Simon") {
+        if (userPermission === "Master") {
 
-            setPermission(
-                <div>
-                    <button className="remove edit-button" onClick={editDoctor}>Edit</button>
-                    <button className="remove remove-button" onClick={deleteDoctor}>Remove</button>
-                </div>);
-
+            setPermission("show")
         }
+    else{
+        setPermission("hide");
+    }
 
     }, []);
 
@@ -90,7 +88,11 @@ const DoctorSort = (props) => {
                 </div>
 
 
-                {permission}
+              
+                <div className={permission}>
+                    <button className="remove edit-button" onClick={editDoctor}>Edit</button>
+                    <button className="remove remove-button" onClick={deleteDoctor}>Remove</button>
+                </div>
 
             </div>
 

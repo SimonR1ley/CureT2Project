@@ -30,17 +30,30 @@
     width: 40%;
     height: 70vh;
     /* background-color: #242731; */
-    margin-left: 20%;
+    margin-left: 35%;
     margin-right: 2%;
   }
   
   .DP-con {
+    margin-left: 20%;
+    margin-right: 45px;
     float: left;
     width: 35%;
-    height: 150vh;
+    height: 75vh;
     /* background-color: #242731; */
     /* margin-left: 2%; */
-    margin-top: -140px;
+    margin-top: 50px;
+  }
+
+  .DP-con-two {
+    /* margin-left: 20%; */
+    float: left;
+    width: 38%;
+    height: 75vh;
+    /* background-color: #242731; */
+    padding: 0;
+    /* margin-left: 2%; */
+    margin-top: 50px;
   }
   
   .calendar-heading {
@@ -66,7 +79,7 @@
   }
   
   .P-heading {
-    padding-top: 50px;
+    /* padding-top: 50px; */
     text-align: center;
     color: white;
     font-family: 'Abel', sans-serif;
@@ -76,7 +89,7 @@
   .d-display {
     /* background-color: aqua; */
     width: 100%;
-    height: 70vh;
+    height: 45vh !important;
     overflow: scroll;
     scrollbar-width: thin;
   }
@@ -109,6 +122,9 @@
     width: 100%;
     height: 45vh;
     overflow: scroll;
+    float: left;
+    margin: 0;
+    padding: 0;
   }
   
   .p-display::-webkit-scrollbar:horizontal {
@@ -144,6 +160,18 @@
     background-color: #242731;
     margin: 0 auto;
     border-radius: 10px;
+  }
+
+  .entry-con-pat {
+    width: 89% !important;
+    height: 50px;
+    background-color: #242731;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+    float: left;
   }
   
   .entry {
@@ -196,3 +224,83 @@
   .spacing {
     margin-top: 20px;
   }
+
+  .appointments-display{
+    float: left;
+    width: 75%;
+    margin-left: 20%;
+    height: 50vh;
+    /* background-color: black; */
+    margin-top: 2vh;
+    overflow: scroll;
+  }
+
+  .appointments-display::-webkit-scrollbar:horizontal {
+    display: none;
+  }
+  
+  .appointments-display::-webkit-scrollbar {
+    /* display: none; */
+    width: 7px;
+  }
+  
+  /* Track */
+  .appointments-display::-webkit-scrollbar-track {
+    background: #303030;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  .appointments-display::-webkit-scrollbar-thumb {
+    background: #3F8CFF;
+    border-radius: 10px;
+  }
+  
+  .A-heading {
+    margin-top: 10vh;
+    float: left;
+    margin-left: 50%;
+    /* padding-top: 50px; */
+    text-align: center;
+    color: white;
+    font-family: 'Abel', sans-serif;
+    font-weight: normal;
+  }
+
+  .ov{
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .ov-more{
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+    float: left;
+    width: 71% !important;
+    margin-left: 22%;
+    /* height: 50vh; */
+    /* background-color: black; */
+    /* margin-top: 2vh; */
+    /* overflow: scroll; */
+
+  }
+
+  .app-d-break-ov {
+    width: 20%;
+    height: 100%;
+    /* background-color: #3F8CFF; */
+    float: left;
+    /* margin-right: 5px; */
+}
+
+.app-d-name-ov {
+  color: white;
+  font-family: 'Abel', sans-serif;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  padding-top: 13px;
+  font-size: 13pt;
+  text-align: center;
+}

@@ -71,7 +71,7 @@
 }
 
 .d-display{
-    height: 75vh;
+    height: 85vh !important;
     margin-top: 20px;
 }
 

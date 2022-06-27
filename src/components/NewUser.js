@@ -20,6 +20,7 @@ const NewUser = () => {
         username: '',
         password: '',
         passwordCon: '',
+        image: '',
     });
 
     const [nameError, setNameError] = useState();
@@ -268,7 +269,7 @@ const NewUser = () => {
             </div>
 
             <div className='profile-pic-con'>
-                <div className='profile-pic-su'></div>
+                <div id='profileimg' className='profile-pic-su profile_img'></div>
                 <p className='profile-pic-des'>Profile Picture</p>
                 <input name="imageUrl" className='imgInput' type="file" onChange={imageVal} />
             </div>

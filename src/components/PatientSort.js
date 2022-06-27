@@ -33,22 +33,21 @@ const PatientSort = (props) => {
         }
     }
 
-
+    
     useEffect(() => {
 
         let userPermission = sessionStorage.getItem('activeUser');
 
-        if (userPermission === "Simon") {
+        if (userPermission === "Master") {
 
-            setPermission(
-                <div>
-                    <button className="remove edit-button" onClick={editPatient}>Edit</button>
-                <button className="remove remove-button" onClick={deletePatient}>Remove</button>
-                </div>);
-
+            setPermission("show")
         }
+    else{
+        setPermission("hide");
+    }
 
     }, []);
+
 
 
     return (
@@ -87,7 +86,12 @@ const PatientSort = (props) => {
                     <h2 className='card-d-entry'>Madical Aid: {props.medicalAid}</h2>
                 </div>
 
-                {permission}
+                
+
+                <div className={permission}>
+                    <button className="remove edit-button" onClick={editPatient}>Edit</button>
+                <button className="remove remove-button" onClick={deletePatient}>Remove</button>
+                </div>
 
 
             </div>

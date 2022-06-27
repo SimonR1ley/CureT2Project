@@ -17,7 +17,7 @@ const Doctors = () => {
         room: '',
         gender: '',
         doctorId: '',
-        specialisation: ''
+        specialisation: '',
     });
 
 
@@ -98,11 +98,28 @@ const Doctors = () => {
 
         let userPermission = sessionStorage.getItem('activeUser');
 
-        if (userPermission === "Simon") {
+        if (userPermission === "Master") {
 
-            setPermission(
-                <div>
-                 <h2 className='add-patients-heading'>Add Doctor</h2>
+            setPermission("show")
+        }
+    else{
+        setPermission("hide");
+    }
+
+    }, []);
+
+
+    return (
+        <div>
+
+            <Header />
+
+            <div className='left-div'>
+                <h1 className='doctor-heading'>Doctors</h1>
+
+               {/* {permission} */}
+               <div className={permission}>
+               <h2 className='add-patients-heading'>Add Doctor</h2>
                 <div className='pat-top-con-doc'>
                     <input className='add-input-pat' placeholder="name" onChange={nameVal}></input>
                     <input className='add-input-pat' placeholder="email" onChange={emailVal}></input>
@@ -119,22 +136,8 @@ const Doctors = () => {
                     <input className='add-input-pat' placeholder="Specialisation" onChange={specialisationVal}></input>
                     <button className="add-patient-btn" onClick={addDoctor}>Add</button>
                 </div>
-                </div>);
 
-        }
-
-    }, []);
-
-
-    return (
-        <div>
-
-            <Header />
-
-            <div className='left-div'>
-                <h1 className='doctor-heading'>Doctors</h1>
-
-               {permission}
+                </div>
 
                 <h2 className='currentDoctors-heading'>Current Doctors</h2>
 

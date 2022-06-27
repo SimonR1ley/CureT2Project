@@ -177,14 +177,36 @@ const Patients = (props) => {
 
 
 
+
+
     useEffect(() => {
 
         let userPermission = sessionStorage.getItem('activeUser');
 
-        if (userPermission === "Simon") {
+        if (userPermission === "Master") {
 
-            setPermission(
-                <div>
+            setPermission("show")
+        }
+    else{
+        setPermission("hide");
+    }
+
+    }, []);
+
+
+
+    return (
+        <div>
+
+            <Header />
+
+
+            <div className='left-div-patients'>
+
+                <h1 className='patients-heading'>Patients</h1>
+
+                
+                <div className={permission}>
                     <h2 className='add-patients-heading'>Add Patient</h2>
                     <div className='pat-top-con'>
                         <input className='add-input-pat' placeholder="name" onChange={nameVal}></input>
@@ -201,25 +223,7 @@ const Patients = (props) => {
                         <input className='add-input-pat' placeholder="Medical Aid" onChange={medicalAidVal}></input>
                         <button className="add-patient-btn" onClick={addPatient}>Add</button>
                     </div>
-                </div>);
-
-        }
-
-    }, []);
-
-
-
-    return (
-        <div>
-
-            <Header />
-
-
-            <div className='left-div-patients'>
-
-                <h1 className='patients-heading'>Patients</h1>
-
-                {permission}
+                </div>
 
                 <h2 className='currentPatients-heading'>Current Patients</h2>
 
